@@ -1,4 +1,4 @@
-FROM docker.io/library/python:3.11-alpine
+FROM docker.io/library/python:3.12-alpine
 
 ARG TARGETPLATFORM
 ARG VERSION
@@ -55,6 +55,8 @@ RUN apk add --no-cache \
         /tmp/*
 
 COPY ./apps/jbops/entrypoint.sh /entrypoint.sh
+
+USER nobody:nogroup
 
 ENTRYPOINT ["/usr/bin/catatonit", "--"]
 CMD ["/entrypoint.sh"]
